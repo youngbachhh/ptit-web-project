@@ -83,4 +83,8 @@ public class Product {
     public void setCategory(String category) {
         this.category = category;
     }
+
+    public void increaseQuantity() {
+        this.quantity++;
+    }
 }

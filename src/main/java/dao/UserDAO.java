@@ -78,4 +78,28 @@ public class UserDAO extends DBconnection {
             e.printStackTrace();
         }
     }
+
+    public User getUserById(int id) {
+        User user = new User();
+        String sql = "SELECT * FROM users WHERE userId = ?";
+        try {
+
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) {
+                user.setId(rs.getInt("userId"));
+                user.setUsername(rs.getString("userName"));
+                user.setEmail(rs.getString("userEmail"));
+                user.setPassword(rs.getString("userPassword"));
+                user.setPhone(rs.getString("userPhoneNumber"));
+                user.setAddress(rs.getString("userAddress"));
+                user.setRole(Integer.parseInt(rs.getString("isAdmin")));
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
 }

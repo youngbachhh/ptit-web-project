@@ -6,21 +6,22 @@ import model.User;
 
 public class Order {
     private int id;
-    private int quantity;
-
-    private Product product;
     private User user;
+    private Product product;
     private Payment payment;
+    private int totalPrice;
+    private String date;
 
     public Order() {
     }
 
-    public Order(int id, int quantity, Product product, User user, Payment payment) {
+    public Order(int id, User user, Product product, Payment payment, int totalPrice, String date) {
         this.id = id;
-        this.quantity = quantity;
-        this.product = product;
         this.user = user;
+        this.product = product;
         this.payment = payment;
+        this.totalPrice = totalPrice;
+        this.date = date;
     }
 
     public int getId() {
@@ -31,12 +32,12 @@ public class Order {
         this.id = id;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public User getUser() {
+        return user;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Product getProduct() {
@@ -47,19 +48,27 @@ public class Order {
         this.product = product;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public Payment getPayment() {
         return payment;
     }
 
     public void setPayment(Payment payment) {
         this.payment = payment;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }
