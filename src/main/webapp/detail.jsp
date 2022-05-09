@@ -16,6 +16,7 @@
 
     <% Product product = new Product();
         product = (Product) request.getAttribute("product");
+        int productId = product.getId();
     %>
     <section id="dautrang">
         <a href="index.jsp"><img src="img/logo.png" class="logo" alt=""></a>
@@ -26,8 +27,18 @@
                 <li><a href="shop.jsp" class="active">Cửa hàng</a></li>
                 <li><a href="about.jsp">Về chúng tôi</a></li>
                 <li><a href="contact.jsp">Liên hệ</a></li>
-                <li id="lg-bag"><a href="cart.jsp"><i class="far fa-shopping-bag"></i></a></li>
+                <li id="lg-bag"><a href="cart.jsp"><i class="far fa-shopping-bag"></i> </a>
+                    <sub>
+                        <% if(session.getAttribute("cart-size") != null) {%>
+                        <%= session.getAttribute("cart-size") %></sub></li>
+                <% } else {%>
+                0</sub></li>
+                <% } %>
+                <% if (session.getAttribute("email") == null) { %>
                 <li><a href="login.jsp">Đăng nhập</a></li>
+                <% }else{  %>
+                <li><a href="/logout">Đăng xuất</a></li>
+                <% } %>
             </ul>
         </div>
     </section>
@@ -39,8 +50,10 @@
             <h4><%= product.getCategory() %> </h4>
             <h4><%= product.getName() %></h4>
             <h2>$<%= product.getPrice() %></h2>
-            <input type="number" value="1" name="" id="">
-            <button class="normal">Thêm vào giỏ hàng</button>
+            <br>
+            <a href="/add-to-cart?productId=<%= productId %>">
+                <button class="normal">Thêm vào giỏ hàng</button>
+            </a>
             <h4>Mô tả sản phẩm</h4>
             <span><%= product.getDescription() %></span>
         </div>
@@ -57,7 +70,6 @@
             <a href="login.jsp">Đăng nhập</a>
             <a href="cart.jsp">Giỏ hàng</a>
         </div>
-
     </footer>
     <script>
 

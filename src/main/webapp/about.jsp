@@ -20,8 +20,18 @@
                 <li><a href="shop.jsp">Cửa hàng</a></li>
                 <li><a href="about.jsp" class="active">Về chúng tôi</a></li>
                 <li><a href="contact.jsp">Liên hệ</a></li>
-                <li id="lg-bag"><a href="cart.jsp"><i class="far fa-shopping-bag"></i></a></li>
+                <li id="lg-bag"><a href="cart.jsp"><i class="far fa-shopping-bag"></i> </a>
+                    <sub>
+                        <% if(session.getAttribute("cart-size") != null) {%>
+                        <%= session.getAttribute("cart-size") %></sub></li>
+                <% } else {%>
+                0</sub></li>
+                <% } %>
+                <% if (session.getAttribute("email") == null) { %>
                 <li><a href="login.jsp">Đăng nhập</a></li>
+                <% }else{  %>
+                <li><a href="/logout">Đăng xuất</a></li>
+                <% } %>
             </ul>
         </div>
     </section>
