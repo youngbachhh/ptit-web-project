@@ -60,6 +60,7 @@
                 </tr>
             </thead>
             <tbody>
+                <% if(cart != null) {%>
                 <% for(Cart cartItem: cart) {
                     product = productDAO.getProductById(cartItem.getId());
                     total += cartItem.getQuantity() * product.getPrice();
@@ -72,7 +73,7 @@
                     <td><input type="number" value="1" id="quantity" min="1" max="99"></td>
                     <td>$<%= product.getPrice() %></td>
                 </tr>
-                <% } %>
+                <% } } %>
             </tbody>
         </table>
     </section>
