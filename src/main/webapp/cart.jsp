@@ -69,7 +69,7 @@
                     <td><a href="/delete?productId=<%=product.getId()%>"><i class="far fa-times-circle"></i></a></td>
                     <td><img src="<%= product.getImage() %>" alt=""></td>
                     <td><%= product.getName() %></td>
-                    <td><%= product.getPrice() %></td>
+                    <td>$<%= product.getPrice() %></td>
                     <td><input type="number" value="1" id="quantity" min="1" max="99"></td>
                     <td>$<%= product.getPrice() %></td>
                 </tr>

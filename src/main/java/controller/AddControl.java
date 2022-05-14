@@ -36,7 +36,9 @@ public class AddControl extends HttpServlet {
         }
         cart.add(cartItem);
         session.setAttribute("cart-size", cart.size());
-        request.getRequestDispatcher("/cart.jsp").forward(request, response);
+//        request.getRequestDispatcher("/cart.jsp").forward(request, response);
+
+        response.sendRedirect("/cart.jsp");
 
 
     }

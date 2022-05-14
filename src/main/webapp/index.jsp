@@ -100,7 +100,7 @@
             <div class="mo-ta">
                 <span><%= product.getCategory() %></span>
                 <h5><%= product.getName() %></h5>
-                <h4><%= product.getPrice() %>$</h4>
+                <h4>$<%= product.getPrice() %></h4>
             </div>
             <a href="detail?productId=<%= id %>"><i class="fal fa-shopping-cart cart"></i></a>
         </div>
