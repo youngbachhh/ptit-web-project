@@ -20,22 +20,36 @@ public class AddControl extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("productId"));
         Cart cartItem = new Cart();
         cartItem.setId(id);
-        cartItem.setQuantity(1);
+        cartItem.setCartQuantity(1);
 
-
+        int totalitem = 1;
         ArrayList<Cart> cartItems = (ArrayList<Cart>) session.getAttribute("cart");
 
         if (cartItems == null) {
             cart = new ArrayList<>();
             session.setAttribute("cart", cart);
-            out.println("cart is null");
         }
         else {
             cart = cartItems;
-            out.println("cart is not null");
+            if(cartItems != null) {
+                for(Cart item: cartItems) {
+                    totalitem += item.getCartQuantity();
+                }
+
+                for(Cart item: cartItems) {
+                    if(item.getId() == cartItem.getId()) {
+                        item.setCartQuantity(item.getCartQuantity() + 1);
+                        totalitem += 1;
+                        session.setAttribute("cart-size", totalitem);
+                        response.sendRedirect("/cart.jsp");
+                        return;
+                    }
+                }
+
+            }
         }
         cart.add(cartItem);
-        session.setAttribute("cart-size", cart.size());
+        session.setAttribute("cart-size", totalitem);
 //        request.getRequestDispatcher("/cart.jsp").forward(request, response);
 
         response.sendRedirect("/cart.jsp");

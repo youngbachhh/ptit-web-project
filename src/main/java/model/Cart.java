@@ -4,18 +4,18 @@ import java.util.List;
 
 public class Cart extends Product{
 
-    private int quantity;
+    private int cartQuantity = 0;
     private int id;
     public Cart() {
 
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getCartQuantity() {
+        return cartQuantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setCartQuantity(int cartQuantity) {
+        this.cartQuantity = cartQuantity;
     }
 
     public int getId() {

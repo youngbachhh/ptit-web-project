@@ -29,7 +29,11 @@ public class DeleteControl extends HttpServlet {
         }
 
         session.setAttribute("cart", cart);
-        session.setAttribute("cart-size", cart.size());
+        int totalitem = 0;
+        for(Cart item: cart) {
+            totalitem += item.getCartQuantity();
+        }
+        session.setAttribute("cart-size", totalitem);
         response.sendRedirect("/cart.jsp");
     }
 }

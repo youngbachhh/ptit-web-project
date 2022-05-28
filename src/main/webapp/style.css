@@ -471,10 +471,6 @@ button.normal {
     outline: none;
 }
 
-
-
-/* Cart */
-
 #cart table {
     width: 100%;
     border-collapse: collapse;
@@ -535,6 +531,20 @@ td:nth-child(6) {
     justify-content: space-between;
 }
 
+.thong-tin {
+    padding: 40px 80px;
+    width: 100%;
+}
+.form-thong-tin {
+    width: 50%;
+}
+
+
+.form-thong-tin input {
+    display: flex;
+    width: 100%;
+}
+
 
 #subtotal h3 {
     padding-bottom: 15px;
@@ -564,6 +574,20 @@ td:nth-child(6) {
     border: 1px solid gray;
     padding: 10px;
     font-size: 13px;
+}
+
+
+.but {
+    padding: 15px 30px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #088178;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
 }
 
 
@@ -691,4 +715,29 @@ td:nth-child(6) {
     width: 100%;
     margin: 0;
 }
+
+
+.number span {cursor:pointer; }
+.minus, .plus{
+    height:100%;
+    display: inline-block;
+    vertical-align: baseline;
+    text-align: center;
+    font-size: 24px;
+}
+.number input {
+    height: 30px;
+    width: 100px;
+    text-align: center;
+    font-size: 13px;
+    display: inline-block;
+    vertical-align: baseline;
+}
+
+.number a {
+    color: black;
+    text-decoration: none;
+}
+
+
 
