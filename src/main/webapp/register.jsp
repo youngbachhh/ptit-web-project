@@ -52,7 +52,7 @@
         <div class="home-reg">
             <div class="wrapper">
                 <h1>Đăng ký</h1>
-                <form method="post" action="/register">
+                <form method="post" action="/register" accept-charset="UTF-8">
                     <input type="email" name="email" placeholder="Email"><br>
                     <input type="text" name="username" placeholder="Tên"><br>
                     <input type="password" name="password" placeholder="Mật khẩu"><br>

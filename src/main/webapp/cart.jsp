@@ -99,13 +99,11 @@
                 <td><strong>$<%= total %></strong></td>
             </tr>
         </table>
-        <%--            <button href = "loadcheckout" class="normal">Thanh toán</button>--%>
-        <%--            <a href = "" class="normal">Thanh toán</a>--%>
     </div>
 </section>
 <section class="thong-tin">
     <div class="form-thong-tin">
-        <form action="/checkout" method="post" >
+        <form action="/checkout" method="post" accept-charset="UTF-8">
             <input required type="text"   name="name" placeholder = "Họ và tên">
             <input required type="text"   name="number" placeholder = "Số điện thoại">
             <input required type="text"   name="add" placeholder = "Địa chỉ">

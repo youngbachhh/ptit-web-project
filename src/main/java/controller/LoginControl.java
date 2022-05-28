@@ -18,6 +18,8 @@ public class LoginControl extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html; charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         String password = request.getParameter("password");
         String email = request.getParameter("email");
 
@@ -27,6 +29,7 @@ public class LoginControl extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("email", email);
             session.setAttribute("userName", userDAO.getUserName());
+            session.setAttribute("userID",userDAO.getUserID());
             response.sendRedirect("index.jsp");
         }
         else {

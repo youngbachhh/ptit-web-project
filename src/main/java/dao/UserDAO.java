@@ -13,6 +13,7 @@ import static java.lang.System.out;
 
 public class UserDAO extends DBconnection {
     public String userName;
+    public int userID;
 
     public boolean checkUser(String email, String password) {
         boolean result = false;
@@ -33,6 +34,7 @@ public class UserDAO extends DBconnection {
                 user.setAddress(rs.getString("userAddress"));
                 user.setRole(Integer.parseInt(rs.getString("isAdmin")));
                 userName = user.getUsername();
+                userID = user.getId();
                 result = true;
             }
 
@@ -45,6 +47,7 @@ public class UserDAO extends DBconnection {
     public String getUserName() {
         return userName;
     }
+    public int getUserID() { return userID;}
 
     public boolean checkUserEmail(String email) {
         boolean result = false;
