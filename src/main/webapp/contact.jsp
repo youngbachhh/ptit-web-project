@@ -12,31 +12,9 @@
 </head>
 
 <body>
-    <section id="dautrang">
-        <a href="index.jsp"><img src="img/logo.png" class="logo" alt=""></a>
+<%@include file="header.jsp" %>
 
-        <div>
-            <ul id="thanh-dieu-huong">
-                <li><a href="index.jsp">Trang chủ</a></li>
-                <li><a href="shop.jsp">Cửa hàng</a></li>
-                <li><a href="about.jsp">Về chúng tôi</a></li>
-                <li><a href="contact.jsp" class="active">Liên hệ</a></li>
-                <li id="lg-bag"><a href="cart.jsp"><i class="far fa-shopping-bag"></i> </a>
-                    <sub>
-                        <% if(session.getAttribute("cart-size") != null) {%>
-                        <%= session.getAttribute("cart-size") %></sub></li>
-                <% } else {%>
-                0</sub></li>
-                <% } %>
-                <% if (session.getAttribute("email") == null) { %>
-                <li><a href="login.jsp">Đăng nhập</a></li>
-                <% }else{  %>
-                <li><a href="/logout">Đăng xuất</a></li>
-                <% } %>
-            </ul>
-        </div>
-    </section>
-    <section id="chitiet-lienlac" class="phan-doan-p1">
+<section id="chitiet-lienlac" class="phan-doan-p1">
         <div class="chi-tiet">
             <span>LIÊN LẠC VỚI CHÚNG TÔI</span>
             <h2>Ghé thăm chúng tôi</h2>
@@ -62,7 +40,7 @@
                 allowfullscreen="" loading="lazy"></iframe>
         </div>
     </section>
-    <section id="form-chi-tiet">
+<section id="form-chi-tiet">
         <form action="">
             <span></span>
             <h2>Chúng tôi rất mong những ý kiến từ bạn</h2>
@@ -73,20 +51,15 @@
             <button class="btn-mail">Gửi mail</button>
         </form>
     </section>
-    <footer class="phan-doan-p1">
-        <div class="cot">
-            <img class="logo" src="img/logo.png" alt="">
-        </div>
-        <div class="cot">
-            <a href="about.jsp">Về chúng tôi</a>
-            <a href="contact.jsp">Liên hệ</a>
-        </div>
-        <div class="cot">
-            <a href="login.jsp">Đăng nhập</a>
-            <a href="cart.jsp">Giỏ hàng</a>
-        </div>
-
-    </footer>
+<%@include file="footer.jsp" %>
 </body>
-
+<script>
+    var idpage = 4;
+    let element = document.getElementsByClassName("actived");
+    console.log(element)
+    for (let i = 0; i < element.length; i++) {
+        element[i].classList.remove("active");
+    }
+    element[idpage-1].classList.add("active");
+</script>
 </html>

@@ -105,4 +105,27 @@ public class UserDAO extends DBconnection {
         }
         return user;
     }
+
+    public User getUserByEmail(String email) {
+        User user = new User();
+        String sql = "SELECT * FROM users WHERE userEmail = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) {
+                user.setId(rs.getInt("userId"));
+                user.setUsername(rs.getString("userName"));
+                user.setEmail(rs.getString("userEmail"));
+                user.setPassword(rs.getString("userPassword"));
+                user.setPhone(rs.getString("userPhoneNumber"));
+                user.setAddress(rs.getString("userAddress"));
+                user.setRole(Integer.parseInt(rs.getString("isAdmin")));
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
 }

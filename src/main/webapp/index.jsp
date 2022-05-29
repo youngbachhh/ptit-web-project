@@ -26,30 +26,7 @@
 %>
 
 
-<section id="dautrang">
-    <a href="index.jsp"><img src="img/logo.png" class="logo" alt=""></a>
-
-    <div>
-        <ul id="thanh-dieu-huong">
-            <li><a class="active" href="index.jsp">Trang chủ</a></li>
-            <li><a href="shop.jsp">Cửa hàng</a></li>
-            <li><a href="about.jsp">Về chúng tôi</a></li>
-            <li><a href="contact.jsp">Liên hệ</a></li>
-            <li id="lg-bag"><a href="cart.jsp"><i class="far fa-shopping-bag"></i> </a>
-                <sub>
-                    <% if(session.getAttribute("cart-size") != null) {%>
-                    <%= session.getAttribute("cart-size") %></sub></li>
-                    <% } else {%>
-                0</sub></li>
-            <% } %>
-            <% if (session.getAttribute("email") == null) { %>
-            <li><a href="login.jsp">Đăng nhập</a></li>
-            <% }else{  %>
-            <li><a href="/logout">Đăng xuất</a></li>
-            <% } %>
-        </ul>
-    </div>
-</section>
+<%@include file="header.jsp" %>
 
 <section id="banner">
     <h2>TEAM 7</h2>
@@ -108,24 +85,18 @@
     </div>
 </section>
 
-<footer class="phan-doan-p1">
-    <div class="cot">
-        <img class="logo" src="img/logo.png" alt="">
-    </div>
-    <div class="cot">
-        <a href="about.jsp">Về chúng tôi</a>
-        <a href="contact.jsp">Liên hệ</a>
-    </div>
-    <div class="cot">
-        <a href="login.jsp">Đăng nhập</a>
-        <a href="cart.jsp">Giỏ hàng</a>
-    </div>
-</footer>
+<%@include file="footer.jsp" %>
 
 </body>
 
 <script>
-
+    var idpage = 1;
+    let element = document.getElementsByClassName("actived");
+    console.log(element)
+    for (let i = 0; i < element.length; i++) {
+        element[i].classList.remove("active");
+    }
+    element[idpage-1].classList.add("active");
 </script>
 
 

@@ -37,8 +37,6 @@ public class AddQuantityControl extends HttpServlet {
         cart.add(cartItem);
 
         session.setAttribute("cart-size", totalitem);
-//        request.getRequestDispatcher("/cart.jsp").forward(request, response);
-
         response.sendRedirect("/cart.jsp");
 
 

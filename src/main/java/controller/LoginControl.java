@@ -24,12 +24,14 @@ public class LoginControl extends HttpServlet {
         String email = request.getParameter("email");
 
         UserDAO userDAO = new UserDAO();
+        User user = userDAO.getUserByEmail(email);
 
         if (userDAO.checkUser(email, password) == true) {
             HttpSession session = request.getSession();
             session.setAttribute("email", email);
             session.setAttribute("userName", userDAO.getUserName());
             session.setAttribute("userID",userDAO.getUserID());
+            session.setAttribute("isAdmin", user.getRole());
             response.sendRedirect("index.jsp");
         }
         else {
