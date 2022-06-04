@@ -38,21 +38,22 @@ public class RegisterControl extends HttpServlet {
 
         }
         else {
-
             if(!password.matches(reg)){
                 session.setAttribute("error", "Mật khẩu phải có ít nhất 8 ký tự, có ít nhất 1 ký tự in hoa, 1 ký tự in thường, 1 ký tự đặc biệt và 1 số và không được có khoảng trắng");
-            }
-
-            UserDAO userDAO = new UserDAO();
-            if (userDAO.checkUserEmail(email)) {
-                session.setAttribute("error", "Email đã tồn tại");
                 request.getRequestDispatcher("/register.jsp").forward(request, response);
-
             }
             else {
-                userDAO.addUser(username, email, password);
-                session.setAttribute("success", "Đăng ký thành công");
-                response.sendRedirect("/login.jsp");
+                UserDAO userDAO = new UserDAO();
+                if (userDAO.checkUserEmail(email)) {
+                    session.setAttribute("error", "Email đã tồn tại");
+                    request.getRequestDispatcher("/register.jsp").forward(request, response);
+
+                }
+                else {
+                    userDAO.addUser(username, email, password);
+                    session.setAttribute("success", "Đăng ký thành công");
+                    response.sendRedirect("/login.jsp");
+                }
             }
         }
     }
