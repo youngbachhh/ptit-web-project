@@ -12,8 +12,6 @@
     <title>Quản lý sản phẩm</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="edit.css" rel="stylesheet" type="text/css"/>
 
 <body>
@@ -33,7 +31,7 @@
     <form action="updateProduct" method="post" class="form-sua">
         <div class="dau-form">
             <h4 class="tieu-de-form">Cập nhật thông tin</h4>
-            <button onclick="window.location.href = 'manageProduct?isAdmin=1';" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <button onclick="window.location.href = 'manageProduct?isAdmin=1';" type="button" aria-hidden="true">&times;</button>
         </div>
         <div class="than-form">
             <div class="nhom-form">

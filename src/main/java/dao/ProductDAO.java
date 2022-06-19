@@ -117,4 +117,28 @@ public class ProductDAO extends DBconnection {
 
         return new ArrayList<>(listCategory);
     }
+
+    public List<Product> searchProduct(String txtSearch){
+        List<Product> list = new ArrayList<>();
+        String sql = "select * from product where productName like ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, "%" + txtSearch + "%");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                Product product = new Product();
+                product.setId(rs.getInt("productId"));
+                product.setName(rs.getString("productName"));
+                product.setPrice(rs.getInt("productPrice"));
+                product.setDescription(rs.getString("productDescription"));
+                product.setImage(rs.getString("productImg"));
+                product.setCategory(rs.getString("productCategory"));
+                list.add(product);
+            }
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }

@@ -28,7 +28,7 @@
             <li><a href="manageProduct?isAdmin=1">Quản lý</a></li>
             <% } %>
             <li><a href="index.jsp" id="1"   class="actived">Trang chủ</a></li>
-            <li><a href="shop.jsp" id="2"  class="actived">Cửa hàng</a></li>
+            <li><a href="shop" id="2"  class="actived">Cửa hàng</a></li>
             <li><a href="about.jsp" id="3"  class="actived">Về chúng tôi</a></li>
             <li><a href="contact.jsp" id="4"  class="actived">Liên hệ</a></li>
             <li id="lg-bag"><a href="cart.jsp" id="5"  class="actived"><i class="far fa-shopping-bag"></i> </a>

@@ -27,7 +27,7 @@ public class ManagerControl extends HttpServlet {
                 response.sendRedirect("/index.jsp");
             }
             else {
-                response.sendRedirect("/manager.jsp");
+                response.sendRedirect("/manageProduct.jsp");
             }
         } catch (NullPointerException e) {
             e.printStackTrace();

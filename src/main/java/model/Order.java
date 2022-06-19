@@ -6,22 +6,28 @@ import model.User;
 
 public class Order {
     private int id;
-    private User user;
-    private Product product;
-    private Payment payment;
+    private int userId;
+
+    private String name;
+    private String phone;
+    private String address;
     private int totalPrice;
     private String date;
+
+    private String status;
 
     public Order() {
     }
 
-    public Order(int id, User user, Product product, Payment payment, int totalPrice, String date) {
+    public Order(int id, int userId, String name, String phone, String address, int totalPrice, String date, String status) {
         this.id = id;
-        this.user = user;
-        this.product = product;
-        this.payment = payment;
+        this.userId = userId;
+        this.name = name;
+        this.phone = phone;
+        this.address = address;
         this.totalPrice = totalPrice;
         this.date = date;
+        this.status = status;
     }
 
     public int getId() {
@@ -32,28 +38,36 @@ public class Order {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public Product getProduct() {
-        return product;
+    public String getName() {
+        return name;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Payment getPayment() {
-        return payment;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPayment(Payment payment) {
-        this.payment = payment;
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public int getTotalPrice() {
@@ -70,5 +84,13 @@ public class Order {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
