@@ -3,6 +3,7 @@ package dao;
 
 import model.User;
 
+import javax.servlet.http.HttpSession;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

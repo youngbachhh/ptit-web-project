@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CheckoutDAO extends DBconnection{
-    public int add(String userID, String username, String phonenumber, String address, String total) {
+    public int add(int userID, String username, String phonenumber, String address, String total) {
         String sql = "INSERT INTO webptit.order (userID, name, phone, address,totalPrice, date, status) VALUES (?, ?, ?, ?, ?, current_date, ?)";
         try {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, userID);
+            ps.setInt(1, userID);
             ps.setString(2, username);
             ps.setString(3, phonenumber);
             ps.setString(4, address);
@@ -23,7 +23,7 @@ public class CheckoutDAO extends DBconnection{
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if(rs.next()) {
-                return rs.getInt(1);
+                return Integer.parseInt(rs.getString(1));
             }
             rs.close();
         } catch (SQLException e) {

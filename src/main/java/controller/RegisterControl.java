@@ -50,6 +50,7 @@ public class RegisterControl extends HttpServlet {
                 }
                 else {
                     userDAO.addUser(username, email, encrypt(password,"WeBteaM07"));
+                    session.setAttribute("userId", userDAO.getUserID());
                     session.setAttribute("success", "Đăng ký thành công");
                     response.sendRedirect("/login.jsp");
                 }
