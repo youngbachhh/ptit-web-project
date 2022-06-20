@@ -124,6 +124,7 @@
             ship[0].innerHTML = "$0";
         }
         else {
+
             ship[0].innerHTML = "$20";
             var totalPrice = <%= total %> + 20;
             total[0].innerHTML = "$" + totalPrice;
