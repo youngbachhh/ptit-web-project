@@ -141,4 +141,52 @@ public class ProductDAO extends DBconnection {
         }
         return list;
     }
+
+    public List<Product> getProductByCate(String categoryName) {
+        List<Product> list = new ArrayList<>();
+        String sql = "select * from product where productCategory like ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, "%" + categoryName + "%");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Product product = new Product();
+                product.setId(rs.getInt("productId"));
+                product.setName(rs.getString("productName"));
+                product.setPrice(rs.getInt("productPrice"));
+                product.setDescription(rs.getString("productDescription"));
+                product.setImage(rs.getString("productImg"));
+                product.setCategory(rs.getString("productCategory"));
+                list.add(product);
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<Product> getProductByOrderID(String ID) {
+        List<Product> list = new ArrayList<>();
+        String sql = "select product.productName, product.productPrice, product.productImg, orderdetail.quantity from webptit.product \n" +
+                "join webptit.orderdetail on product.productId = orderdetail.productId where orderdetail.orderId = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, ID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Product product = new Product();
+                product.setName(rs.getString("productName"));
+                product.setPrice(rs.getInt("productPrice"));
+                product.setImage(rs.getString("productImg"));
+                product.setOrderdetailsQuantity(rs.getInt("quantity"));
+                list.add(product);
+                System.out.println(list.get(0).getName());
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }

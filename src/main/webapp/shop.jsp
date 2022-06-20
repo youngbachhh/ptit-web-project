@@ -22,37 +22,23 @@
 %>
 
 
-<section id="dautrang">
-    <a href="index.jsp"><img src="img/logo.png" class="logo" alt=""></a>
+<%@include file="header.jsp" %>
 
-    <div>
-        <ul id="thanh-dieu-huong">
-            <li><a href="index.jsp">Trang chủ</a></li>
-            <li><a href="shop" class="active">Cửa hàng</a></li>
-            <li><a href="about.jsp">Về chúng tôi</a></li>
-            <li><a href="contact.jsp">Liên hệ</a></li>
-            <li id="lg-bag"><a href="cart.jsp"><i class="far fa-shopping-bag"></i> </a>
-                <sub>
-                    <% if(session.getAttribute("cart-size") != null) {%>
-                    <%= session.getAttribute("cart-size") %></sub></li>
-            <% } else {%>
-            0</sub></li>
-            <% } %>
-            <% if (session.getAttribute("email") == null) { %>
-            <li><a href="login.jsp">Đăng nhập</a></li>
-            <% }else{  %>
-            <li><a href="/logout">Đăng xuất</a></li>
-            <% } %>
-
-        </ul>
-    </div>
-</section>
 <div class="search-box">
     <form action="search" method = "post">
         <input value="${txtSearch}" type="text" name="txtSearch" placeholder="Tìm kiếm">
-        <i class="ti-search"></i>
+        <i class="ti-search"></i><i class="far fa-search"></i>
     </form>
 </div>
+
+<div class="phan-loai">
+    <table>
+        <thead><h3 style="background-color: #088178">CATEGORIES</h3></thead>
+        <thead><h4><a href="category?cate=Laptop">Laptop</a></h4></thead>
+        <thead><h4><a href="category?cate=Phone">Phone</a></h4></thead>
+    </table>
+</div>
+
 <section id="sanpham1" class="phan-doan-p1">
     <div class="ngan-san-pham">
         <c:forEach items="${list}" var='o'>

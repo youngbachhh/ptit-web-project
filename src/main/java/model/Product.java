@@ -11,7 +11,7 @@ public class Product {
     private String image;
     private String category;
 
-
+    private int orderdetailsQuantity;
     public Product() {
 
     }
@@ -26,6 +26,13 @@ public class Product {
         this.quantity = quantity;
         this.image = image;
         this.category = category;
+    }
+
+    public Product(String name, int price, String image, int orderdetailsQuantity) {
+        this.name = name;
+        this.price = price;
+        this.image = image;
+        this.orderdetailsQuantity = orderdetailsQuantity;
     }
 
     public int getId() {
@@ -83,6 +90,11 @@ public class Product {
     public void setCategory(String category) {
         this.category = category;
     }
+
+    public int getOrderdetailsQuantity() {  return orderdetailsQuantity; }
+
+    public void setOrderdetailsQuantity(int orderQuantity) { this.orderdetailsQuantity = orderQuantity; }
+
 
     public void increaseQuantity() {
         this.quantity++;

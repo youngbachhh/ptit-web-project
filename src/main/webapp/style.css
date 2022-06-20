@@ -797,3 +797,13 @@ td:nth-child(6) {
 .search-box input {
     width: 200px;
 }
+
+.phan-loai {
+    width: 120px;
+}
+
+.detail-but {
+    text-decoration: none;
+    font-size: 15px;
+    color: #088178;
+}
