@@ -22,6 +22,8 @@
     ProductDAO productDAO = new ProductDAO();
     Product product = new Product();
     int total = 0;
+    int ship = 0;
+    int temp = 0;
 %>
 <%@include file="header.jsp" %>
 
@@ -73,8 +75,12 @@
                 <td>$<%= total %></td>
             </tr>
             <tr>
+                <td>Phí vận chuyển</td>
+                <td class="ship">$0</td>
+            </tr>
+            <tr>
                 <td><strong>Tổng phải thanh toán</strong></td>
-                <td><strong>$<%= total %></strong></td>
+                <td class="total"><strong>$<%= total %></strong></td>
             </tr>
         </table>
     </div>
@@ -99,11 +105,35 @@
 <script>
     var idpage = 5;
     let element = document.getElementsByClassName("actived");
-    console.log(element)
     for (let i = 0; i < element.length; i++) {
         element[i].classList.remove("active");
     }
     element[idpage-1].classList.add("active");
+
+
+    var ship = document.getElementsByClassName("ship");
+    var total = document.getElementsByClassName("total");
+    async function getData() {
+        let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=ha noi&appid=7c186e6ad2a59dc9c66cfb11b00cb3cc
+`
+        let data = await fetch(apiURL).then(res => res.json())
+
+        temp = (data.main.feels_like - 273.15).toFixed(0)
+        console.log((data.main.feels_like - 273.15))
+        console.log(temp)
+    }
+    getData()
+    console.log(temp)
+    if(temp < 25) {
+        ship[0].innerHTML = "$0";
+    }
+    else {
+        ship[0].innerHTML = "$20";
+        var totalPrice = parseInt(total[0].innerHTML.replace("$", "")) + 20;
+        total[0].innerHTML = "$" + totalPrice;
+    }
+
+
 </script>
 </html>
 

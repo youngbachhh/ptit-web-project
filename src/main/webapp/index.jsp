@@ -40,9 +40,6 @@
         %>
     </h1>
     <% } %>
-
-
-
 </section>
 
 <section id="sanpham1" class="phan-doan-p1">

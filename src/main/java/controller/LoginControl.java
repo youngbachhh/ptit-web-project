@@ -22,7 +22,7 @@ public class LoginControl extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String password = request.getParameter("password");
         String email = request.getParameter("email");
-
+        int loginFailed = 0;
         UserDAO userDAO = new UserDAO();
         User user = userDAO.getUserByEmail(email);
 
@@ -32,10 +32,15 @@ public class LoginControl extends HttpServlet {
             session.setAttribute("userName", userDAO.getUserName());
             session.setAttribute("userID",userDAO.getUserID());
             session.setAttribute("isAdmin", user.getRole());
+            if(request.getAttribute("authenication") != null) {
+                request.removeAttribute("authenication");
+            }
             response.sendRedirect("index.jsp");
         }
         else {
-            response.sendRedirect("login.jsp");
+            loginFailed = 1;
+            request.setAttribute("authenication", loginFailed);
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }
 }

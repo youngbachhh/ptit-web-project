@@ -51,7 +51,9 @@
 <section id="cart" class="phan-doan-p1">
     <div id="quan-ly-dau">
         <div class="row">
-            <h2>Quản lý <b>sản phẩm</b></h2>
+            <div class="row">
+                <h2>Quản lý <b>sản phẩm</b></h2>
+            </div>
             <div class="dau-nut">
                 <a href="add.jsp" class="but" id="nut2"><span>Thêm mói</span></a>
             </div>

@@ -1,14 +1,5 @@
-<%--
-    Document   : ManagerProduct
-    Created on : Dec 28, 2020, 5:19:02 PM
-    Author     : boixi
---%>
-<%@ page import="dao.ProductDAO" %>
-<%@ page import="model.Product" %>
 <%@ page import="java.util.List" %>
-<%@ page import="model.OrderDetail" %>
-<%@ page import="dao.OrderDetailDAO" %>
-<%@ page import="dao.OrderDAO" %>
+<%@ page import="dao.CheckoutDAO" %>
 <%@ page import="model.Order" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -18,78 +9,78 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Quản lý sản phẩm</title>
+    <title>Quản lý đơn hàng</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <%--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">--%>
-    <%--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">--%>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="style.css" rel="stylesheet" type="text/css"/>
 <body>
 <% try {
     int id = Integer.parseInt(session.getAttribute("isAdmin").toString());
-    int deleteId = 0;
 
     if(id != 1 || session.getAttribute("isAdmin") == null) {
         response.sendRedirect("index.jsp");
     } else {
-        ProductDAO productDAO = new ProductDAO();
-        List<Product> products = productDAO.getAllProducts();
-        List<String> listCategory = productDAO.getAllCategory();
+        CheckoutDAO checkoutDAO = new CheckoutDAO();
+        List<Order> orderList = checkoutDAO.getAllOrder();
 
-        OrderDAO orderDAO = new OrderDAO();
-        List<Order> orders = orderDAO.getAllOrders();
 %>
+
 <section id="dautrang">
     <a href="index.jsp"><img src="img/logo.png" class="logo" alt=""></a>
 
     <div>
         <ul id="thanh-dieu-huong">
             <li><a href="index.jsp" id="1"   class="actived">Trang chủ</a></li>
-            <li><a href="manageOrder.jsp" id="2"  class="actived">Quản lý sản phẩm</a></li>
-            <li><a href="manageProduct.jsp" id="3"  class="actived">Quản lý đơn đặt hàng</a></li>
+            <li><a href="manageProduct.jsp" id="2"  class="actived">Quản lý sản phẩm</a></li>
+            <li><a href="manageOrder.jsp" id="3"  class="actived">Quản lý đơn đặt hàng</a></li>
         </ul>
     </div>
 </section>
 <section id="cart" class="phan-doan-p1">
     <div id="quan-ly-dau">
         <div class="row">
-            <h2>Quản lý <b>sản phẩm</b></h2>
+            <h2>Quản lý <b>đơn hàng</b></h2>
         </div>
     </div>
     <table width="100%">
         <thead>
         <tr>
-            <th>ID</th>
-            <th>Tên</th>
-            <th>Ảnh</th>
-            <th>Giá</th>
-            <th>Sửa/Xóa</th>
+            <th>ID đơn hàng</th>
+            <th>ID user</th>
+            <th>Tên khách hàng</th>
+            <th>Số điện thoại</th>
+            <th>Địa chỉ</th>
+            <th>Tổng tiền</th>
+            <th>Ngày đặt</th>
+            <th>Trạng thái</th>
         </tr>
         </thead>
         <tbody>
-        <% for (Product product : products) { %>
+        <% for (Order order : orderList) { %>
         <tr>
-            <td><%=product.getId()%></td>
-            <td><%=product.getName()%></td>
+            <td><%=order.getId()%></td>
+            <td><%=order.getUserId()%></td>
+            <td><%=order.getName()%></td>
+            <td><%=order.getPhone()%></td>
+            <td><%=order.getAddress()%></td>
+            <td><%=order.getTotalPrice()%></td>
+            <td><%=order.getDate()%></td>
             <td>
-                <img src="<%=product.getImage()%>">
-            </td>
-            <td><%=product.getPrice()%> $</td>
-            <td>
-                <%deleteId = product.getId();%>
-                <a href="editProduct?productId=<%=product.getId()%>" class="edit" id="edit"><i class="material-icons" data-toggle="tooltip" title="Sửa">&#xE254;</i></a>
-                <a href="#" class="delete" id="delete" onclick="function xacnhan() {
-                        if(confirm('Xóa sản phẩm này nhé!!!') == true) {
-                        window.location.href='deleteProduct?productId=<%=deleteId%>';
-                        }
-                        } xacnhan()"><i class="material-icons" data-toggle="tooltip" title="Xóa">&#xE872;</i></a>
+                <% if(order.getStatus().equalsIgnoreCase("0")) { %>
+                <button class="but" id="nut2" onclick="function xacnhan() {
+                        window.location.href = 'updateOrder?orderId=<%=order.getId()%>';
+                        } xacnhan()">Xác nhận</button>
+                <% } else { %>
+                <button class="but" id="nut4" disabled>Đã duyệt</button>
+                <% }%>
             </td>
         </tr>
         <% } %>
         </tbody>
     </table>
+
 </section>
 
 <% } } catch(NullPointerException e) {
@@ -97,6 +88,7 @@
     response.sendRedirect("index.jsp");
 } %>
 </body>
+
 <script>
     var idpage = 3;
     let element = document.getElementsByClassName("actived");
@@ -106,5 +98,4 @@
     }
     element[idpage-1].classList.add("active");
 </script>
-
 </html>
