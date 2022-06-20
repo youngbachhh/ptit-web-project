@@ -33,7 +33,7 @@
 
 <div class="phan-loai">
     <table>
-        <thead><h3 style="background-color: #088178">CATEGORIES</h3></thead>
+        <thead><h3 style="color: #088178">Danh mục sản phẩm</h3></thead>
         <thead><h4><a href="category?cate=Laptop">Laptop</a></h4></thead>
         <thead><h4><a href="category?cate=Phone">Phone</a></h4></thead>
     </table>
@@ -47,7 +47,7 @@
                 <div class="mo-ta">
                     <span>${o.category}</span>
                     <h5>${o.name}</h5>
-                    <h4>${o.price}$</h4>
+                    <h4>$${o.price}</h4>
                 </div>
                 <a href="detail?productId=${o.id}"><i class="fal fa-shopping-cart cart"></i></a>
             </div>
@@ -69,4 +69,13 @@
 
 </footer>
 </body>
+<script>
+    var idpage = 2;
+    let element = document.getElementsByClassName("actived");
+    console.log(element)
+    for (let i = 0; i < element.length; i++) {
+        element[i].classList.remove("active");
+    }
+    element[idpage-1].classList.add("active");
+</script>
 </html>

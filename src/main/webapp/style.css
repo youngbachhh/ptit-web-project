@@ -799,7 +799,17 @@ td:nth-child(6) {
 }
 
 .phan-loai {
-    width: 120px;
+    width: 200px;
+    margin-left: 80px;
+}
+
+.phan-loai a {
+    text-decoration: none;
+    color: black;
+}
+
+.phan-loai a:hover {
+    color: #088178;
 }
 
 .detail-but {
@@ -807,3 +817,43 @@ td:nth-child(6) {
     font-size: 15px;
     color: #088178;
 }
+
+
+/*API CSS*/
+.province-select {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+#province {
+    width: 32%;
+    height: 35px;
+}
+
+#province option {
+    width: 32%;
+    height: 35px;
+}
+
+
+#district {
+    width: 32%;
+    height: 35px;
+}
+
+#district option {
+    width: 32%;
+    height: 35px;
+}
+
+#ward {
+    width: 32%;
+    height: 35px;
+}
+
+#ward option {
+    width: 32%;
+    height: 35px;
+}
+

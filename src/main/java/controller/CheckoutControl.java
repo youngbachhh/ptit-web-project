@@ -29,6 +29,10 @@ public class CheckoutControl extends HttpServlet {
         String username = request.getParameter("name");
         String number = request.getParameter("number");
         String add = request.getParameter("add");
+        String province = request.getParameter("province_name");
+        String district = request.getParameter("district_name");
+        String ward = request.getParameter("ward_name");
+        add = add + ", "+ ward + ", " + district + ", " + province;
 
         CheckoutDAO checkoutDAO = new CheckoutDAO();
         ArrayList<Cart> cart = (ArrayList<Cart>) session.getAttribute("cart");

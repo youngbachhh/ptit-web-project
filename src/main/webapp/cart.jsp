@@ -22,8 +22,9 @@
     ProductDAO productDAO = new ProductDAO();
     Product product = new Product();
     int total = 0;
-    int ship = 0;
-    int temp = 0;
+    String province = "";
+    String district = "";
+    String ward = "";
 %>
 <%@include file="header.jsp" %>
 
@@ -87,10 +88,28 @@
 </section>
 <section class="thong-tin">
     <div class="form-thong-tin">
-        <form action="/checkout" method="post" accept-charset="UTF-8">
+        <% if (session.getAttribute("email") == null) { %>
+            <form action="/login" method="post" accept-charset="UTF-8">
+        <% }else if(session.getAttribute("cart-size") == null ||session.getAttribute("cart-size").toString().equalsIgnoreCase("0") ) {  %>
+            <form action="index.jsp" method="post" accept-charset="UTF-8">
+        <% } else {%>
+            <form action="/checkout" method="post" accept-charset="UTF-8">
+        <% } %>
+
             <input required type="text"   name="name" placeholder = "Họ và tên">
             <input required type="text"   name="number" placeholder = "Số điện thoại">
-            <input required type="text"   name="add" placeholder = "Địa chỉ">
+
+            <div class="province-select">
+                <select name="province_name" id="province">
+                </select>
+
+                <select name="district_name" id="district">
+                </select>
+
+                <select name="ward_name" id="ward">
+                </select>
+            </div>
+            <input required type="text"   name="add" placeholder = "Địa chỉ cụ thể">
             <input type="submit" class="but" value="Thanh toán" >
         </form>
     </div>
@@ -133,6 +152,101 @@
     getData()
 
 
+    // API Province
+    var province = document.getElementById('province');
+    var district = document.getElementById('district');
+    var ward = document.getElementById('ward');
+    var data
+    var province_arr = [];
+    var district_arr = [];
+    for (let i = 0; i < 100; i++) {
+        district_arr[i] = new Array(100);
+    }
+    var ward_arr = [];
+    for (let i = 0; i < 100; i++) {
+        ward_arr[i] = new Array(100);
+    }
+
+    for (let i = 0; i < 100; i++) {
+        for (let j = 0; j < 100; j++) {
+            ward_arr[i][j] = new Array(100);
+        }
+    }
+
+
+
+    async function Provincess() {
+        let apiURL = `https://provinces.open-api.vn/api/?depth=3`
+        data = await fetch(apiURL).then(res => res.json())
+        console.log(data)
+        for (let i = 0; i < data.length; i++) {
+            let option = document.createElement('option');
+            option.value = data[i].name;
+            option.innerText = data[i].name;
+            province.appendChild(option);
+            province_arr.push(data[i].name)
+        }
+        province.addEventListener("click", function () {
+            let province_code = province.value;
+            console.log(province_code)
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].name == province_code) {
+<%--                    <%= province %> =  data[i].name--%>
+                    let district = document.getElementById('district');
+                    district.innerHTML = '';
+                    ward.innerHTML = '';
+                    for (let j = 0; j < data[i].districts.length; j++) {
+                        let option = document.createElement('option');
+                        option.value = data[i].districts[j].name;
+                        option.innerText = data[i].districts[j].name;
+                        district.appendChild(option);
+                        district_arr[i][j] = data[i].districts[j].name;
+                    }
+                }
+            }
+        })
+
+
+        district.addEventListener("click", function () {
+            let district_code = district.value;
+            console.log(district_code)
+            for (let i = 0; i < data.length; i++) {
+                for (let j = 0; j < data[i].districts.length; j++) {
+                    if (data[i].districts[j].name == district_code) {
+<%--                        <%= district %> =  data[i].districts[j].name--%>
+                        let ward = document.getElementById('ward');
+                        ward.innerHTML = '';
+                        for (let k = 0; k < data[i].districts[j].wards.length; k++) {
+                            let option = document.createElement('option');
+                            option.value = data[i].districts[j].wards[k].name;
+                            option.innerText = data[i].districts[j].wards[k].name;
+                            ward.appendChild(option);
+                            ward_arr[i][j][k] = data[i].districts[j].wards[k].name;
+                        }
+                    }
+                }
+            }
+        })
+
+        <%--ward.addEventListener("click", function () {--%>
+        <%--    let ward_code = ward.value;--%>
+        <%--    console.log(ward_code)--%>
+        <%--    for (let i = 0; i < data.length; i++) {--%>
+        <%--        for (let j = 0; j < data[i].districts.length; j++) {--%>
+        <%--            for (let k = 0; k < data[i].districts[j].wards.length; k++) {--%>
+        <%--                if (data[i].districts[j].wards[k].code == ward_code) {--%>
+        <%--                    <%= ward %> =  data[i].districts[j].wards[k].name--%>
+        <%--                }--%>
+        <%--            }--%>
+        <%--        }--%>
+        <%--    }--%>
+        <%--})--%>
+
+    }
+    Provincess()
+    console.log(province_arr)
+    console.log(district_arr)
+    console.log(ward_arr)
 
 
 </script>

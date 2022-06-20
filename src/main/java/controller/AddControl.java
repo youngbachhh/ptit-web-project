@@ -33,10 +33,6 @@ public class AddControl extends HttpServlet {
             cart = cartItems;
             if(cartItems != null) {
                 for(Cart item: cartItems) {
-                    totalitem += item.getCartQuantity();
-                }
-
-                for(Cart item: cartItems) {
                     if(item.getId() == cartItem.getId()) {
                         item.setCartQuantity(item.getCartQuantity() + 1);
                         totalitem += 1;
